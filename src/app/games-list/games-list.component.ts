@@ -22,7 +22,7 @@ export class GamesListComponent implements AfterViewInit {
   displayedColumns: string[] = ['thumbnail', 'game'];
   games = new MatTableDataSource(
     games.filter(
-      (game) => game.status !== 'Removed' && game.type === this.gamesType
+      (game) => game.status !== 'Removed'&& this.gamesType ? game.type === this.gamesType : game.type !== this.gamesType
     )
   );
 

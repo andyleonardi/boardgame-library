@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
 
 // Components imports
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +25,9 @@ import { GamePageComponent } from './game-page/game-page.component';
 import { FormPageComponent } from './form-page/form-page.component';
 import { BorrowPageComponent } from './borrow-page/borrow-page.component';
 import { ReturnPageComponent } from './return-page/return-page.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
+import { CheckoutStatsComponent } from './checkout-stats/checkout-stats.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +39,9 @@ import { ReturnPageComponent } from './return-page/return-page.component';
     FormPageComponent,
     BorrowPageComponent,
     ReturnPageComponent,
+    AdminLoginComponent,
+    AdminSettingsComponent,
+    CheckoutStatsComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +55,7 @@ import { ReturnPageComponent } from './return-page/return-page.component';
     MatFormFieldModule,
     MatCheckboxModule,
     MatGridListModule,
+    MatCardModule,
     RouterModule.forRoot([
       { path: '', component: HomePageComponent },
       { path: 'games', component: GamesListComponent },
@@ -55,6 +63,10 @@ import { ReturnPageComponent } from './return-page/return-page.component';
       { path: 'form/:formType', component: FormPageComponent },
       { path: 'borrowed/:id', component: BorrowPageComponent },
       { path: 'returned/:id', component: ReturnPageComponent },
+      // Admin paths
+      { path: 'admin/login', component: AdminLoginComponent },
+      { path: 'admin/settings', component: AdminSettingsComponent },
+      { path: 'admin/stats', component: CheckoutStatsComponent },
     ]),
   ],
   bootstrap: [AppComponent],
