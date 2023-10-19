@@ -1,0 +1,101 @@
+/* Global Styles */
+
+* {
+  font-family: "Roboto", Arial, sans-serif;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  margin: 0 10px;
+}
+
+router-outlet + * {
+  padding: 0 16px;
+}
+
+/* Home Page */
+.home-buttons {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+
+.home-button-rows {
+  display: table-cell;
+  max-width: 600px;
+}
+
+.home-button-rows .mat-mdc-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+/* Games List Page */
+.games-list-thumb-cell {
+    width: 20%;
+}
+
+.games-list-thumb {
+    width: 100%;
+}
+
+/* Game Page */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.game-page-img {
+  min-width: 300px;
+  width: 70%;
+  align-self: center;
+  margin: 5px;
+}
+
+.game-page-buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.game-page-buttons-rows {
+  display: table-cell;
+  min-width: 250px;
+  margin: 10px 0;
+}
+
+/* Form Page */
+.form-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.form-page-container mat-form-field {
+    width: 250px;
+    margin-bottom: 25px;
+}
+
+.form-page-checkboxes {
+    margin-bottom: 15px;
+}
+
+.form-page-container p {
+    margin-bottom: 0px;
+}
+
+.form-page-required-text {
+    font-style: italic;
+    font-weight: bold;
+    font-size: smaller;
+}
+
+.form-page-recommendation {
+    color: gray;
+    font-style: italic;
+    font-size: smaller;
+}

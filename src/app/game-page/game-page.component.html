@@ -1,0 +1,32 @@
+<div class="game-container" *ngIf="game">
+  <img class="game-page-img" src="{{ game.imgUrl }}" />
+  <div class="game-page-buttons-container">
+    <button
+      class="game-page-buttons-rows"
+      mat-raised-button
+      color="primary"
+      *ngIf="game.status === 'Available'"
+      (click)="onClick('borrow')"
+    >
+      Borrow
+    </button>
+    <button
+      class="game-page-buttons-rows"
+      mat-raised-button
+      color="primary"
+      *ngIf="game.status === 'Borrowed'"
+      (click)="onClick('return')"
+    >
+      Return
+    </button>
+    <button
+      class="game-page-buttons-rows"
+      mat-raised-button
+      color="primary"
+      *ngIf="game.status === 'Available'"
+      (click)="onClick('play')"
+    >
+      Play in Cafe
+    </button>
+  </div>
+</div>
