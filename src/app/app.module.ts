@@ -11,6 +11,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 // Components imports
 import { AppRoutingModule } from './app-routing.module';
@@ -46,6 +47,7 @@ import { ReturnPageComponent } from './return-page/return-page.component';
     MatInputModule,
     MatFormFieldModule,
     MatCheckboxModule,
+    MatGridListModule,
     RouterModule.forRoot([
       { path: '', component: HomePageComponent },
       { path: 'games', component: GamesListComponent },
