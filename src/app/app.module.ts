@@ -2,7 +2,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 // Material imports
 import { MatButtonModule } from '@angular/material/button';
@@ -13,6 +13,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 // Components imports
 import { AppRoutingModule } from './app-routing.module';
@@ -28,6 +32,8 @@ import { ReturnPageComponent } from './return-page/return-page.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
 import { CheckoutStatsComponent } from './checkout-stats/checkout-stats.component';
+import { TableDisplayComponent } from './table-display/table-display.component';
+import { TableFiltersComponent } from './table-filters/table-filters.component';
 
 @NgModule({
   declarations: [
@@ -42,12 +48,15 @@ import { CheckoutStatsComponent } from './checkout-stats/checkout-stats.componen
     AdminLoginComponent,
     AdminSettingsComponent,
     CheckoutStatsComponent,
+    TableDisplayComponent,
+    TableFiltersComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    FormsModule,
     MatButtonModule,
     MatTableModule,
     MatPaginatorModule,
@@ -56,6 +65,10 @@ import { CheckoutStatsComponent } from './checkout-stats/checkout-stats.componen
     MatCheckboxModule,
     MatGridListModule,
     MatCardModule,
+    MatSelectModule,
+    MatSliderModule,
+    MatButtonToggleModule,
+    MatExpansionModule,
     RouterModule.forRoot([
       { path: '', component: HomePageComponent },
       { path: 'games', component: GamesListComponent },
@@ -67,6 +80,8 @@ import { CheckoutStatsComponent } from './checkout-stats/checkout-stats.componen
       { path: 'admin/login', component: AdminLoginComponent },
       { path: 'admin/settings', component: AdminSettingsComponent },
       { path: 'admin/stats', component: CheckoutStatsComponent },
+      // Test paths
+      { path: 'test', component: TableDisplayComponent },
     ]),
   ],
   bootstrap: [AppComponent],

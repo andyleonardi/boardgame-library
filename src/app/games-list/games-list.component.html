@@ -1,6 +1,6 @@
 <h2>Games</h2>
 
-<div class="mat-elevation-z8">
+<!-- <div class="mat-elevation-z8">
 <table mat-table [dataSource]="games" class="games-list-table">
     <ng-container matColumnDef="thumbnail">
         <th class="games-list-thumb-cell games-list-header" mat-header-cell *matHeaderCellDef>Games</th>
@@ -24,4 +24,9 @@
                showFirstLastButtons
                aria-label="Select page">
 </mat-paginator>
-</div>
+</div> -->
+
+<app-table-filters></app-table-filters>
+
+<app-table-display [selectedType]="gamesType">
+</app-table-display>

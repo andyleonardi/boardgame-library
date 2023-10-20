@@ -33,6 +33,17 @@ router-outlet + * {
   margin: 8px 8px 8px 0;
 }
 
+/* Table Filters */
+.table-filters mat-button-toggle-group {
+    display: flex;
+    flex-grow: calc(20%);
+    flex-wrap: wrap;
+}
+
+.table-filters mat-button-toggle {
+    font-size: 0.9em;
+}
+
 /* Games List Page */
 .games-list-thumb-cell {
   width: 20%;
