@@ -8,7 +8,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class AdminLoginComponent {
   form: FormGroup = new FormGroup({
-    username: new FormControl(''),
+    ldap: new FormControl(''),
     password: new FormControl(''),
   })
 

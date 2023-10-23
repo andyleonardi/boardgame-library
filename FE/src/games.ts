@@ -10,12 +10,12 @@ export interface Game {
   minPlayer: number;
   maxPlayer: number;
   checkouts: Array<{
-    username: string;
+    ldap: string;
     checkoutType: string;
     checkDate: string;
   }>;
   reviews: Array<{
-    username: string;
+    ldap: string;
     recommended: boolean;
   }>;
 }
@@ -34,19 +34,19 @@ export const games = [
     maxPlayer: 4,
     checkouts: [
         {
-            username: 'andyleonardi',
+            ldap: 'andyleonardi',
             checkoutType: 'Borrow',
             checkDate: '2023-09-22',
         },
         {
-            username: 'slatts',
+            ldap: 'slatts',
             checkoutType: 'Play',
             checkDate: '2023-04-12',
         },
     ],
     reviews: [
         {
-            username: 'andyleonardi',
+            ldap: 'andyleonardi',
             recommended: true,
         },
     ],
@@ -64,14 +64,14 @@ export const games = [
     maxPlayer: 4,
     checkouts: [
         {
-            username: 'andyleonardi',
+            ldap: 'andyleonardi',
             checkoutType: 'Borrow',
             checkDate: '2023-07-06',
         },
     ],
     reviews: [
         {
-            username: 'andyleonardi',
+            ldap: 'andyleonardi',
             recommended: true,
         },
     ],
@@ -89,7 +89,7 @@ export const games = [
     maxPlayer: 4,
     checkouts: [
         {
-            username: 'slatts',
+            ldap: 'slatts',
             checkoutType: 'Borrow',
             checkDate: '2023-10-09',
         },
@@ -109,37 +109,37 @@ export const games = [
     maxPlayer: 12,
     checkouts: [
         {
-            username: 'slatts',
+            ldap: 'slatts',
             checkoutType: 'Borrow',
             checkDate: '2021-10-09',
         },
         {
-            username: 'andyleonardi',
+            ldap: 'andyleonardi',
             checkoutType: 'Borrow',
             checkDate: '2021-02-10',
         },
         {
-            username: 'slatts',
+            ldap: 'slatts',
             checkoutType: 'Play',
             checkDate: '2020-09-22',
         },
         {
-            username: 'votbear',
+            ldap: 'votbear',
             checkoutType: 'Borrow',
             checkDate: '2020-08-30',
         },
     ],
     reviews: [
         {
-            username: 'andyleonardi',
+            ldap: 'andyleonardi',
             recommended: true,
         },
         {
-            username: 'slatts',
+            ldap: 'slatts',
             recommended: true,
         },
         {
-            username: 'votbear',
+            ldap: 'votbear',
             recommended: false,
         },
     ],
@@ -157,46 +157,46 @@ export const games = [
     maxPlayer: 99,
     checkouts: [
         {
-            username: 'slatts',
+            ldap: 'slatts',
             checkoutType: 'Play',
             checkDate: '2023-07-24',
         },
         {
-            username: 'andyleonardi',
+            ldap: 'andyleonardi',
             checkoutType: 'Play',
             checkDate: '2023-01-25',
         },
         {
-            username: 'minqi',
+            ldap: 'minqi',
             checkoutType: 'Borrow',
             checkDate: '2022-09-25',
         },
         {
-            username: 'votbear',
+            ldap: 'votbear',
             checkoutType: 'Borrow',
             checkDate: '2022-06-13',
         },
         {
-            username: 'slatts',
+            ldap: 'slatts',
             checkoutType: 'Borrow',
             checkDate: '2022-06-02',
         },
     ],
     reviews: [
         {
-            username: 'andyleonardi',
+            ldap: 'andyleonardi',
             recommended: true,
         },
         {
-            username: 'minqi',
+            ldap: 'minqi',
             recommended: true,
         },
         {
-            username: 'votbear',
+            ldap: 'votbear',
             recommended: true,
         },
         {
-            username: 'slatts',
+            ldap: 'slatts',
             recommended: true,
         },
     ],
@@ -214,28 +214,28 @@ export const games = [
     maxPlayer: 5,
     checkouts: [
         {
-            username: 'slatts',
+            ldap: 'slatts',
             checkoutType: 'Borrow',
             checkDate: '2023-05-14',
         },
         {
-            username: 'minqi',
+            ldap: 'minqi',
             checkoutType: 'Borrow',
             checkDate: '2022-09-25',
         },
         {
-            username: 'slatts',
+            ldap: 'slatts',
             checkoutType: 'Play',
             checkDate: '2022-08-17',
         },
     ],
     reviews: [
         {
-            username: 'minqi',
+            ldap: 'minqi',
             recommended: true,
         },
         {
-            username: 'slatts',
+            ldap: 'slatts',
             recommended: true,
         },
     ],
@@ -253,32 +253,32 @@ export const games = [
     maxPlayer: 5,
     checkouts: [
         {
-            username: 'andyleonardi',
+            ldap: 'andyleonardi',
             checkoutType: 'Borrow',
             checkDate: '2023-08-08',
         },
         {
-            username: 'slatts',
+            ldap: 'slatts',
             checkoutType: 'Play',
             checkDate: '2023-05-19',
         },
         {
-            username: 'minqi',
+            ldap: 'minqi',
             checkoutType: 'Borrow',
             checkDate: '2022-09-25',
         },
     ],
     reviews: [
         {
-            username: 'andyleonardi',
+            ldap: 'andyleonardi',
             recommended: true,
         },
         {
-            username: 'slatts',
+            ldap: 'slatts',
             recommended: false,
         },
         {
-            username: 'minqi',
+            ldap: 'minqi',
             recommended: true,
         },
     ],
@@ -296,19 +296,19 @@ export const games = [
     maxPlayer: 4,
     checkouts: [
         {
-            username: 'minqi',
+            ldap: 'minqi',
             checkoutType: 'Borrow',
             checkDate: '2023-10-10',
         },
         {
-            username: 'votbear',
+            ldap: 'votbear',
             checkoutType: 'Borrow',
             checkDate: '2023-04-24',
         },
     ],
     reviews: [
         {
-            username: 'votbear',
+            ldap: 'votbear',
             recommended: true,
         },
     ],
@@ -326,28 +326,28 @@ export const games = [
     maxPlayer: 4,
     checkouts: [
         {
-            username: 'slatts',
+            ldap: 'slatts',
             checkoutType: 'Borrow',
             checkDate: '2023-01-04',
         },
         {
-            username: 'andyleonardi',
+            ldap: 'andyleonardi',
             checkoutType: 'Play',
             checkDate: '2022-05-15',
         },
         {
-            username: 'slatts',
+            ldap: 'slatts',
             checkoutType: 'Borrow',
             checkDate: '2022-04-27',
         },
     ],
     reviews: [
         {
-            username: 'andyleonardi',
+            ldap: 'andyleonardi',
             recommended: true,
         },
         {
-            username: 'slatts',
+            ldap: 'slatts',
             recommended: true,
         },
     ],

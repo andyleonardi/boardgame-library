@@ -36,7 +36,7 @@ export class StatsCalculatorService {
     const uniqueUsers = new Set();
     this.games.forEach((game) => {
       game.checkouts.forEach((c) => {
-        uniqueUsers.add(c.username);
+        uniqueUsers.add(c.ldap);
       });
     });
 

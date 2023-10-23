@@ -15,7 +15,7 @@ export class FormPageComponent implements OnInit {
   gameId = this.gamesFilterService.getGameId();
 
   formInputs = this.formBuilder.group({
-    username: '',
+    ldap: '',
     borrowAck: false,
     damageAck: false,
     returnAck: false,

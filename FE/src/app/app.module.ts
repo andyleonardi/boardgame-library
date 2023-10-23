@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 // Material imports
 import { MatButtonModule } from '@angular/material/button';
@@ -57,6 +58,7 @@ import { TableFiltersComponent } from './table-filters/table-filters.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
     MatButtonModule,
     MatTableModule,
     MatPaginatorModule,

@@ -4,15 +4,15 @@
   (ngSubmit)="onSubmit()"
 >
   <mat-form-field>
-    <mat-label for="username">username</mat-label>
+    <mat-label for="ldap">ldap</mat-label>
     <input
-      id="username"
+      id="ldap"
       type="text"
-      formControlName="username"
+      formControlName="ldap"
       matInput
       required
     />
-    <mat-hint>Please input your username</mat-hint>
+    <mat-hint>Please input your ldap</mat-hint>
   </mat-form-field>
 
   <p *ngIf="formType !== 'play'" class="form-page-required-text">Required</p>

@@ -29,7 +29,7 @@ export class BorrowPageComponent implements OnInit {
     const gameIdFromRoute = Number(routeParams.get('id'));
 
     this.game = games.find((game) => game.id === gameIdFromRoute);
-    this.users = this.game?.checkouts.map((c) => c.username);
+    this.users = this.game?.checkouts.map((c) => c.ldap);
 
     // find users who borrowed this game [array of users]
     // for each user, find games they've borrowed / played previously
@@ -39,7 +39,7 @@ export class BorrowPageComponent implements OnInit {
 
     const gamesList = this.users?.map((user) => {
       const filteredGames = games.filter((game) =>
-        game.checkouts.some((c) => c.username === user)
+        game.checkouts.some((c) => c.ldap === user)
         &&
         game.status !== 'Removed'
       );

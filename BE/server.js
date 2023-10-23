@@ -9,14 +9,14 @@ const cors = require("cors");
 // SET UP CONFIGURATIONS
 // -----------------------------------------------------------------------------
 require("./config/database");
-// require("./config/auth");
+require("./config/auth");
 
 
 // -----------------------------------------------------------------------------
 // IMPORT ROUTERS
 // -----------------------------------------------------------------------------
 const gamesRouter = require("./routes/games");
-// const usersRouter = require("./routes/users");
+const usersRouter = require("./routes/users");
 const bggRouter = require("./routes/bggFetch");
 
 
@@ -43,7 +43,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // ROUTERS
 // -----------------------------------------------------------------------------
 app.use('/sggamescafe/api/games', gamesRouter);
-// app.use('/sggamescafe/api/users', usersRouter);
+app.use('/sggamescafe/api/users', usersRouter);
 app.use('/sggamescafe/api/bgg', bggRouter);
 
 
