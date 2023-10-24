@@ -36,6 +36,9 @@ import { CheckoutStatsComponent } from './checkout-stats/checkout-stats.componen
 import { TableDisplayComponent } from './table-display/table-display.component';
 import { TableFiltersComponent } from './table-filters/table-filters.component';
 
+// Services import
+import { AuthChecker } from './services/auth-checker.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,8 +83,8 @@ import { TableFiltersComponent } from './table-filters/table-filters.component';
       { path: 'returned/:id', component: ReturnPageComponent },
       // Admin paths
       { path: 'admin/login', component: AdminLoginComponent },
-      { path: 'admin/settings', component: AdminSettingsComponent },
-      { path: 'admin/stats', component: CheckoutStatsComponent },
+      { path: 'admin/settings', component: AdminSettingsComponent, canActivate: [AuthChecker] },
+      { path: 'admin/stats', component: CheckoutStatsComponent, canActivate: [AuthChecker] },
       // Test paths
       { path: 'test', component: TableDisplayComponent },
     ]),

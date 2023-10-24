@@ -62,7 +62,7 @@ router-outlet + * {
 
 .game-page-img {
   min-width: 300px;
-  width: 70%;
+  width: 15%;
   align-self: center;
   margin: 5px;
 }
