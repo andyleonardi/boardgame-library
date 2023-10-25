@@ -122,6 +122,13 @@ router-outlet + * {
   margin: 20px;
 }
 
+.admin-error-message {
+  margin-top: 50px;
+  border-radius: 1px solid red;
+  background-color: rgb(251, 178, 191);
+  color: red;
+}
+
 /* Admin Settings */
 .admin-settings-buttons {
   display: flex;

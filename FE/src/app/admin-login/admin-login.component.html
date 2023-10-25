@@ -1,4 +1,4 @@
-<div class="admin-login-container">
+<div class="admin-login-container" *ngIf="!isAdminAuth">
   <mat-card>
     <mat-card-title>Game Guides Login</mat-card-title>
     <mat-card-content>
@@ -24,15 +24,20 @@
             />
           </mat-form-field>
         </p>
-
-        <!-- <p *ngIf="error" class="admin-login-error">
-    {{ error }}
-  </p> -->
-
         <div class="button">
           <button type="submit" mat-button>Login</button>
         </div>
       </form>
     </mat-card-content>
   </mat-card>
+
+  <h3 *ngIf="errorCheck" class="admin-error-message">
+    Error: {{ errorMessage }}
+  </h3>
+</div>
+
+<div class="admin-login-container" *ngIf="isAdminAuth">
+  <div class="button">
+    <button mat-button (click)="logout()">Logout</button>
+  </div>
 </div>

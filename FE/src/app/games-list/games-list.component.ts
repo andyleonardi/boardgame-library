@@ -4,6 +4,7 @@ import { Component, AfterViewInit, ViewChild } from '@angular/core';
 
 // import { games } from 'src/games';
 import { GamesFilterService } from '../services/games-filter.service';
+import { LoginAuthService } from '../services/login-auth.service';
 
 @Component({
   selector: 'app-games-list',
@@ -11,6 +12,7 @@ import { GamesFilterService } from '../services/games-filter.service';
   styleUrls: ['./games-list.component.css'],
 })
 export class GamesListComponent /*implements AfterViewInit*/ {
+  isAdminAuth: boolean | null = null;
   gamesType = this.gamesFilterService.getGameType();
   // displayedColumns: string[] = ['thumbnail', 'game'];
   // games = new MatTableDataSource(
@@ -19,7 +21,15 @@ export class GamesListComponent /*implements AfterViewInit*/ {
   //   )
   // );
 
-  constructor(private gamesFilterService: GamesFilterService) {}
+  constructor(
+    private gamesFilterService: GamesFilterService,
+    private loginAuthService: LoginAuthService
+  ) {
+    this.loginAuthService.isAdminAuth$.subscribe((isAdMinAuth) => {
+      this.isAdminAuth = isAdMinAuth;
+    });
+    console.log("hello", this.isAdminAuth);
+  }
 
   // @ViewChild(MatPaginator) paginator!: MatPaginator;
 

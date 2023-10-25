@@ -19,6 +19,9 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
 
+// Services import
+import { AuthChecker } from './services/auth-checker.service';
+
 // Components imports
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,9 +38,8 @@ import { AdminSettingsComponent } from './admin-settings/admin-settings.componen
 import { CheckoutStatsComponent } from './checkout-stats/checkout-stats.component';
 import { TableDisplayComponent } from './table-display/table-display.component';
 import { TableFiltersComponent } from './table-filters/table-filters.component';
+import { PasswordFormComponent } from './password-form/password-form.component';
 
-// Services import
-import { AuthChecker } from './services/auth-checker.service';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,7 @@ import { AuthChecker } from './services/auth-checker.service';
     CheckoutStatsComponent,
     TableDisplayComponent,
     TableFiltersComponent,
+    PasswordFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,6 +88,7 @@ import { AuthChecker } from './services/auth-checker.service';
       { path: 'admin/login', component: AdminLoginComponent },
       { path: 'admin/settings', component: AdminSettingsComponent, canActivate: [AuthChecker] },
       { path: 'admin/stats', component: CheckoutStatsComponent, canActivate: [AuthChecker] },
+      { path: 'admin/password', component: PasswordFormComponent, canActivate: [AuthChecker] },
       // Test paths
       { path: 'test', component: TableDisplayComponent },
     ]),
