@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { games } from 'src/games';
-import { GamesFilterService } from '../services/games-filter.service';
+import { GamesFilterService } from '../services/public/games-filter.service';
 
 @Component({
   selector: 'app-home-page',

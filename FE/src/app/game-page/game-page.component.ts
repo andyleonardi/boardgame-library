@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Game, games } from 'src/games';
-import { GamesFilterService } from '../services/games-filter.service';
+import { GamesFilterService } from '../services/public/games-filter.service';
 
 @Component({
   selector: 'app-game-page',

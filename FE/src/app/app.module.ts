@@ -21,7 +21,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 // Services import
-import { AuthChecker } from './services/auth-checker.service';
+import { AuthChecker } from './services/login-and-auth/auth-checker.service';
 
 // Components imports
 import { AppRoutingModule } from './app-routing.module';

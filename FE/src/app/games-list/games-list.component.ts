@@ -3,8 +3,8 @@ import { Component, AfterViewInit, ViewChild } from '@angular/core';
 // import { MatPaginator } from '@angular/material/paginator';
 
 // import { games } from 'src/games';
-import { GamesFilterService } from '../services/games-filter.service';
-import { LoginAuthService } from '../services/login-auth.service';
+import { GamesFilterService } from '../services/public/games-filter.service';
+import { LoginAuthService } from '../services/login-and-auth/login-auth.service';
 
 @Component({
   selector: 'app-games-list',

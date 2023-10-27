@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { LoginAuthService } from '../services/login-auth.service';
+import { LoginAuthService } from '../services/login-and-auth/login-auth.service';
 
 @Component({
   selector: 'app-top-bar',

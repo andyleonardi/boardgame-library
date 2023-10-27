@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 
 import { Game, games } from 'src/games';
-import { GamesFilterService } from '../services/games-filter.service';
+import { GamesFilterService } from '../services/public/games-filter.service';
 
 @Component({
   selector: 'app-form-page',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { StatsCalculatorService } from '../services/stats-calculator.service';
+import { StatsCalculatorService } from '../services/public/stats-calculator.service';
 
 @Component({
   selector: 'app-checkout-stats',

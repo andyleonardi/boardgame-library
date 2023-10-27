@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
-import { LoginAuthService } from '../services/login-auth.service';
+import { LoginAuthService } from '../services/login-and-auth/login-auth.service';
 
 @Component({
   selector: 'app-admin-login',

@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 
 import { games } from 'src/games';
+import { GamesFilterService } from '../services/public/games-filter.service';
 
 interface Type {
   value: string;
@@ -34,11 +35,13 @@ export class TableDisplayComponent {
     games.filter((game) => game.status !== 'Removed')
   );
 
+  constructor(private gamesService: GamesFilterService) { }
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
 
   ngOnInit() {
-    this.games.filter = this.selectedType;
+    // this.games.filter = this.selectedType;
   }
 
   ngAfterViewInit() {

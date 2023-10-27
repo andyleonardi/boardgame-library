@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { userEndpoints } from 'src/endpoints';
-import { LoginAuthService } from './login-auth.service';
+import { LoginAuthService } from '../login-and-auth/login-auth.service';
 
 @Injectable({
   providedIn: 'root',

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { AdminToServerService } from '../services/admin-to-server.service';
+import { AdminToServerService } from '../services/admin/admin-to-server.service';
 
 @Component({
   selector: 'app-password-form',
