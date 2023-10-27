@@ -2,7 +2,7 @@ const BACKEND_URL: string = 'http://localhost:8080';
 
 export const userEndpoints = {
   login: (): string => `${BACKEND_URL}/sggamescafe/api/users/login`,
-  editPwd: (ldap: string): string =>
+  editPwd: (ldap: string | null): string =>
     `${BACKEND_URL}/sggamescafe/api/users/${ldap}`,
 };
 

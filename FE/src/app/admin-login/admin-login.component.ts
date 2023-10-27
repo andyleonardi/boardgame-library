@@ -32,8 +32,6 @@ export class AdminLoginComponent implements OnInit {
     this.loginAuthService.errorMessage$.subscribe((errorMessage) => {
       this.errorMessage = errorMessage;
     });
-
-    console.log("hello", this.isAdminAuth);
   }
 
   

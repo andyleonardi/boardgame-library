@@ -26,8 +26,8 @@ export class LoginAuthService {
   private errorResponse = new BehaviorSubject<boolean | false>(false);
   errorCheck$: Observable<boolean | false> = this.errorResponse.asObservable();
   private errorMessageValue = new BehaviorSubject<string | null>(null);
-  errorMessage$: Observable<string | null> = this.errorMessageValue.asObservable();
-
+  errorMessage$: Observable<string | null> =
+    this.errorMessageValue.asObservable();
 
   constructor(
     private http: HttpClient,
@@ -103,23 +103,5 @@ export class LoginAuthService {
     // this.adminUser.user = { ldap: '' };
 
     this.router.navigate(['/admin/login']);
-  }
-
-  editPassword(oldPassword: string, newPassword: string) {
-    const body = {
-      currentPassword: oldPassword,
-      newPassword: newPassword,
-    };
-
-    // return this.http
-    //   .put(userEndpoints.editPwd(this.adminUser.user.ldap), body)
-    //   .subscribe(
-    //     (res: any) => {
-    //       return res;
-    //     },
-    //     (error) => {
-    //       console.log(`Error: ${error.message}`);
-    //     }
-    //   );
   }
 }

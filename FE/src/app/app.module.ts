@@ -18,6 +18,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 // Services import
 import { AuthChecker } from './services/auth-checker.service';
@@ -77,6 +78,7 @@ import { PasswordFormComponent } from './password-form/password-form.component';
     MatSliderModule,
     MatButtonToggleModule,
     MatExpansionModule,
+    MatSnackBarModule,
     RouterModule.forRoot([
       { path: '', component: HomePageComponent },
       { path: 'games', component: GamesListComponent },

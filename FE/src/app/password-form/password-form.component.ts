@@ -1,29 +1,52 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { LoginAuthService } from '../services/login-auth.service';
+import { AdminToServerService } from '../services/admin-to-server.service';
 
 @Component({
   selector: 'app-password-form',
   templateUrl: './password-form.component.html',
   styleUrls: ['./password-form.component.css'],
 })
-export class PasswordFormComponent {
+export class PasswordFormComponent implements OnInit {
+  chgPwdSuccess: boolean | null = true;
+  chgPwdMsg: string | null = null;
+
   form: FormGroup = new FormGroup({
-    ldap: new FormControl(''),
-    password: new FormControl(''),
+    oldPassword: new FormControl(''),
+    newPassword: new FormControl(''),
   });
 
-  constructor(private loginAuthService: LoginAuthService) {}
+  constructor(
+    private adminToServerService: AdminToServerService,
+    private _snackBar: MatSnackBar
+  ) {}
+
+  ngOnInit() {
+    this.adminToServerService.chgPwdSuccess$.subscribe((chgPwdSuccess) => {
+      this.chgPwdSuccess = chgPwdSuccess;
+    });
+
+    this.adminToServerService.chgPwdMsg$.subscribe((chgPwdMsg) => {
+      this.chgPwdMsg = chgPwdMsg;
+    });
+  }
 
   submit() {
     if (this.form.valid) {
       console.log('Submitted ', this.form.value);
 
-      const ldap = this.form.value.ldap;
-      const password = this.form.value.password;
+      const oldPassword = this.form.value.oldPassword;
+      const newPassword = this.form.value.newPassword;
 
-      this.loginAuthService.adminLogin(ldap, password);
+      this.adminToServerService.editPassword(oldPassword, newPassword);
+    }
+
+    if (this.chgPwdSuccess) {
+      this._snackBar.open('Successfully changed password', 'X', {
+        duration: 2000,
+      });
     }
   }
 }

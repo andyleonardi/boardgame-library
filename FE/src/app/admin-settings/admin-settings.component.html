@@ -34,6 +34,16 @@
       class="admin-settings-button-rows"
       mat-stroked-button
       color="primary"
+      [routerLink]="['/admin/password']"
+    >
+      > Change Password
+    </a>
+  </h3>
+  <h3>
+    <a
+      class="admin-settings-button-rows"
+      mat-stroked-button
+      color="primary"
       (click)="logout()"
     >
       > Logout
