@@ -11,7 +11,7 @@
 </form>
 
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="games" class="games-list-table">
+  <table mat-table [dataSource]="dataSource" class="games-list-table">
     <ng-container matColumnDef="thumbnail">
       <th
         class="games-list-thumb-cell games-list-header"
@@ -21,7 +21,7 @@
       Games
       </th>
       <td class="games-list-thumb-cell" mat-cell *matCellDef="let element">
-        <img class="games-list-thumb" src="{{ element.imgThumb }}" />
+        <img class="games-list-thumb" src="{{ element.bggImgThumb }}" />
       </td>
     </ng-container>
 
@@ -35,7 +35,7 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr
       mat-row
-      [routerLink]="['/games', row.id]"
+      [routerLink]="['/games', row._id]"
       *matRowDef="let row; columns: displayedColumns"
     ></tr>
   </table>

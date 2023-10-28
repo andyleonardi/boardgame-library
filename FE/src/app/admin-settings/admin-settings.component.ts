@@ -8,7 +8,7 @@ import { LoginAuthService } from '../services/login-and-auth/login-auth.service'
   styleUrls: ['./admin-settings.component.css'],
 })
 export class AdminSettingsComponent {
-
+  
   constructor(
     private loginAuthService: LoginAuthService,
   ) {}

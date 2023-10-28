@@ -40,6 +40,9 @@ import { CheckoutStatsComponent } from './checkout-stats/checkout-stats.componen
 import { TableDisplayComponent } from './table-display/table-display.component';
 import { TableFiltersComponent } from './table-filters/table-filters.component';
 import { PasswordFormComponent } from './password-form/password-form.component';
+import { AdminEditGamesComponent } from './admin-edit-games/admin-edit-games.component';
+import { AdminAddGameComponent } from './admin-add-game/admin-add-game.component';
+import { AdminAddGameFormComponent } from './admin-add-game-form/admin-add-game-form.component';
 
 
 @NgModule({
@@ -58,6 +61,9 @@ import { PasswordFormComponent } from './password-form/password-form.component';
     TableDisplayComponent,
     TableFiltersComponent,
     PasswordFormComponent,
+    AdminEditGamesComponent,
+    AdminAddGameComponent,
+    AdminAddGameFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,6 +97,8 @@ import { PasswordFormComponent } from './password-form/password-form.component';
       { path: 'admin/settings', component: AdminSettingsComponent, canActivate: [AuthChecker] },
       { path: 'admin/stats', component: CheckoutStatsComponent, canActivate: [AuthChecker] },
       { path: 'admin/password', component: PasswordFormComponent, canActivate: [AuthChecker] },
+      { path: 'admin/addgame', component: AdminAddGameComponent },
+      { path: 'games/:id/edit', component: AdminEditGamesComponent, canActivate: [AuthChecker] },     
       // Test paths
       { path: 'test', component: TableDisplayComponent },
     ]),

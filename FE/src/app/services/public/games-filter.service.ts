@@ -9,7 +9,7 @@ import { gameEndpoints } from 'src/endpoints';
 })
 export class GamesFilterService {
   gamesType: string = '';
-  gameId: number = 0;
+  gameId!: string | null;
 
   constructor(private http: HttpClient) {}
 
@@ -17,7 +17,11 @@ export class GamesFilterService {
     return this.http.get(gameEndpoints.getAllGames());
   }
 
-  filterGames(type: string) {
+  getGame(id: string | null): Observable<any> {
+    return this.http.get(gameEndpoints.getOneGame(id));
+  }
+
+  filterGames(type: string): void {
     this.gamesType = type;
   }
 
@@ -25,7 +29,7 @@ export class GamesFilterService {
     return this.gamesType;
   }
 
-  storeGameId(id: number) {
+  storeGameId(id: string | null) {
     this.gameId = id;
   }
 

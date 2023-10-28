@@ -3,13 +3,19 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { userEndpoints } from 'src/endpoints';
+import { gameEndpoints } from 'src/endpoints';
+import { bggEndpoints } from 'src/endpoints';
 import { LoginAuthService } from '../login-and-auth/login-auth.service';
+import { GamesFilterService } from '../public/games-filter.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminToServerService {
   ldap: string | null = null;
+  gameId!: string | null;
+
+  searchQuery!: string | null;
 
   private chgPwdResponse = new BehaviorSubject<boolean | null>(true);
   chgPwdSuccess$: Observable<boolean | null> =
@@ -19,7 +25,8 @@ export class AdminToServerService {
 
   constructor(
     private http: HttpClient,
-    private loginAuthService: LoginAuthService
+    private loginAuthService: LoginAuthService,
+    private gamesFilterService: GamesFilterService
   ) {
     this.loginAuthService.ldap$.subscribe((ldap) => {
       this.ldap = ldap;
@@ -57,5 +64,60 @@ export class AdminToServerService {
           throw error;
         }
       );
+  }
+
+  storeQuery(text: string) {
+    this.searchQuery = text.replace(/ /g, '+');
+  }
+
+  searchBGG(): Observable<any> {
+    return this.http.get(bggEndpoints.searchForGame(this.searchQuery));
+  }
+
+  addGame(
+    name: string,
+    bggThingId: string,
+    status: string,
+    type: string
+  ): Observable<any> {
+    const body = {
+      name: name,
+      bggThingId: bggThingId,
+      status: status,
+      type: type,
+    };
+
+    const token = this.loginAuthService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.post(gameEndpoints.addNewGame(), body, {
+      headers,
+    });
+  }
+
+  editGame(status: string, type: string): Observable<any> {
+    const body = {
+      status: status,
+      type: type,
+    };
+    this.gameId = this.gamesFilterService.getGameId();
+
+    const token = this.loginAuthService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.put(gameEndpoints.editStatType(this.gameId), body, {
+      headers,
+    });
+  }
+
+  deleteGame(): Observable<any> {
+    this.gameId = this.gamesFilterService.getGameId();
+
+    const token = this.loginAuthService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.delete(gameEndpoints.deleteGame(this.gameId), {
+      headers,
+    });
   }
 }

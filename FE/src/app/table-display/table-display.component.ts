@@ -1,8 +1,14 @@
-import { Component, Input, AfterViewInit, ViewChild, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  AfterViewInit,
+  ViewChild,
+  OnInit,
+} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 
-import { games } from 'src/games';
+// import { games } from 'src/games';
 import { GamesFilterService } from '../services/public/games-filter.service';
 
 interface Type {
@@ -15,9 +21,11 @@ interface Type {
   templateUrl: './table-display.component.html',
   styleUrls: ['./table-display.component.css'],
 })
-export class TableDisplayComponent {
+export class TableDisplayComponent implements OnInit {
   @Input() selectedType: string = '';
 
+  dataSource: MatTableDataSource<any> = new MatTableDataSource();
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   types: Type[] = [
     { value: 'Two Player', viewValue: '2-Player' },
     { value: 'Light', viewValue: 'Light' },
@@ -31,24 +39,32 @@ export class TableDisplayComponent {
   ];
 
   displayedColumns: string[] = ['thumbnail', 'game'];
-  games = new MatTableDataSource(
-    games.filter((game) => game.status !== 'Removed')
-  );
 
-  constructor(private gamesService: GamesFilterService) { }
+  constructor(private gamesFilterService: GamesFilterService) {}
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-
+  
 
   ngOnInit() {
     // this.games.filter = this.selectedType;
+    this.gamesFilterService.getGames().subscribe((res) => {
+      this.dataSource = new MatTableDataSource(res.data.games);
+      this.dataSource.paginator = this.paginator;
+      // console.log('response', res.data.games);
+      // console.log('data', this.dataSource);
+    });
+    
   }
+  
+  // games = new MatTableDataSource(
+  //   this.data
+  //   // this.data.filter((game: any) => game.status !== 'Removed')
+  // );
 
-  ngAfterViewInit() {
-    this.games.paginator = this.paginator;
-  }
+  // ngAfterViewInit(): void {
+  //   this.dataSource.paginator = this.paginator;
+  // }
 
   applyTypeFilter(event: any) {
-    this.games.filter = this.selectedType;
+    this.dataSource.filter = this.selectedType;
   }
 }

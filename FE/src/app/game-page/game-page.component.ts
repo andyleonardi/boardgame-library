@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Game, games } from 'src/games';
+// import { Game, games } from 'src/games';
 import { GamesFilterService } from '../services/public/games-filter.service';
+import { LoginAuthService } from '../services/login-and-auth/login-auth.service';
 
 @Component({
   selector: 'app-game-page',
@@ -10,24 +11,38 @@ import { GamesFilterService } from '../services/public/games-filter.service';
   styleUrls: ['./game-page.component.css'],
 })
 export class GamePageComponent implements OnInit {
-  game: Game | undefined;
-  gameId: number = 0;
+  isAdminAuth: boolean | null = null;
+  game: any;
+  gameId!: string | null;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private gamesFilterService: GamesFilterService
-  ) {}
+    private gamesFilterService: GamesFilterService,
+    private loginAuthService: LoginAuthService
+  ) {
+    this.loginAuthService.isAdminAuth$.subscribe((isAdMinAuth) => {
+      this.isAdminAuth = isAdMinAuth;
+    });
+  }
 
   ngOnInit() {
     const routeParams = this.route.snapshot.paramMap;
-    const gameIdFromRoute = Number(routeParams.get('id'));
+    const gameIdFromRoute = routeParams.get('id');
     this.gameId = gameIdFromRoute;
-    this.game = games.find((game) => game.id === gameIdFromRoute);
+    this.gamesFilterService.getGame(this.gameId).subscribe((res) => {
+      this.game = res.data.game;
+    });
+
+    // this.game = games.find((game) => game.id === gameIdFromRoute);
   }
 
   onClick(checkType: string) {
     this.gamesFilterService.storeGameId(this.gameId);
-    this.router.navigate(['/form/', checkType]);
+    if (checkType != 'edit') {
+      this.router.navigate(['/form/', checkType]);
+    } else {
+      this.router.navigate([`/games/${this.gameId}/edit`]);
+    }
   }
 }

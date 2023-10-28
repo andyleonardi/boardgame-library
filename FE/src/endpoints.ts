@@ -9,14 +9,21 @@ export const userEndpoints = {
 export const gameEndpoints = {
   addNewGame: (): string => `${BACKEND_URL}/sggamescafe/api/games/new`,
   getAllGames: (): string => `${BACKEND_URL}/sggamescafe/api/games`,
-  getOneGame: (id: string): string =>
+  getOneGame: (id: string | null): string =>
     `${BACKEND_URL}/sggamescafe/api/games/${id}`,
-  editStatType: (id: string): string =>
+  editStatType: (id: string | null): string =>
     `${BACKEND_URL}/sggamescafe/api/games/${id}`,
-  deleteGame: (id: string): string =>
+  deleteGame: (id: string | null): string =>
     `${BACKEND_URL}/sggamescafe/api/games/${id}`,
-  addCheckout: (id: string): string =>
+  addCheckout: (id: string | null): string =>
     `${BACKEND_URL}/sggamescafe/api/games/${id}/check`,
-  addReturn: (id: string): string =>
+  addReturn: (id: string | null): string =>
     `${BACKEND_URL}/sggamescafe/api/games/${id}/return`,
+};
+
+export const bggEndpoints = {
+  searchForGame: (query: string | null): string =>
+    `${BACKEND_URL}/sggamescafe/api/bgg/search/${query}`,
+  getBGGDetails: (id: string | null): string =>
+    `${BACKEND_URL}/sggamescafe/api/bgg/game/${id}`,
 };
