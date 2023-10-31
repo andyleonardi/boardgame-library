@@ -19,6 +19,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
 
 // Services import
 import { AuthChecker } from './services/login-and-auth/auth-checker.service';
@@ -85,6 +86,7 @@ import { AdminAddGameFormComponent } from './admin-add-game-form/admin-add-game-
     MatButtonToggleModule,
     MatExpansionModule,
     MatSnackBarModule,
+    MatIconModule,
     RouterModule.forRoot([
       { path: '', component: HomePageComponent },
       { path: 'games', component: GamesListComponent },

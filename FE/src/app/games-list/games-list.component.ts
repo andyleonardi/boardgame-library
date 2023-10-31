@@ -1,6 +1,4 @@
-import { Component, AfterViewInit, ViewChild } from '@angular/core';
-// import { MatTableDataSource } from '@angular/material/table';
-// import { MatPaginator } from '@angular/material/paginator';
+import { Component } from '@angular/core';
 
 // import { games } from 'src/games';
 import { GamesFilterService } from '../services/public/games-filter.service';
@@ -11,29 +9,18 @@ import { LoginAuthService } from '../services/login-and-auth/login-auth.service'
   templateUrl: './games-list.component.html',
   styleUrls: ['./games-list.component.css'],
 })
-export class GamesListComponent /*implements AfterViewInit*/ {
+export class GamesListComponent {
   isAdminAuth: boolean | null = null;
-  gamesType = this.gamesFilterService.getGameType();
-  // displayedColumns: string[] = ['thumbnail', 'game'];
-  // games = new MatTableDataSource(
-  //   games.filter(
-  //     (game) => game.status !== 'Removed'&& this.gamesType ? game.type === this.gamesType : game.type !== this.gamesType
-  //   )
-  // );
+  gamesType!: string;
 
   constructor(
     private gamesFilterService: GamesFilterService,
-    private loginAuthService: LoginAuthService
+    private loginAuthService: LoginAuthService,
   ) {
     this.loginAuthService.isAdminAuth$.subscribe((isAdMinAuth) => {
       this.isAdminAuth = isAdMinAuth;
     });
-    console.log("hello", this.isAdminAuth);
+    this.gamesType = this.gamesFilterService.getGameType();
   }
 
-  // @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  // ngAfterViewInit() {
-  //   this.games.paginator = this.paginator;
-  // }
 }

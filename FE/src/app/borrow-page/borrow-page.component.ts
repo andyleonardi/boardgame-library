@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
+// import { MatTableDataSource } from '@angular/material/table';
 
-import { Game, games } from 'src/games';
 import { GamesFilterService } from '../services/public/games-filter.service';
 
 @Component({
@@ -11,8 +10,8 @@ import { GamesFilterService } from '../services/public/games-filter.service';
   styleUrls: ['./borrow-page.component.css'],
 })
 export class BorrowPageComponent implements OnInit {
-  game: Game | undefined;
-  games = [...games];
+  game: any;
+  games: [] = [];
   users: string[] | undefined = [];
   recList: any[] | undefined = [];
   displayedColumns: string[] = ['thumbnail', 'game'];
@@ -20,45 +19,55 @@ export class BorrowPageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private gamesFilterService: GamesFilterService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
-    const gameIdFromRoute = Number(routeParams.get('id'));
+    const gameIdFromRoute = routeParams.get('id');
 
-    this.game = games.find((game) => game.id === gameIdFromRoute);
-    this.users = this.game?.checkouts.map((c) => c.ldap);
+    this.gamesFilterService.getGame(gameIdFromRoute).subscribe((res) => {
+      this.game = res.data.game;
 
-    // find users who borrowed this game [array of users]
-    // for each user, find games they've borrowed / played previously
-    // store them in an array
-    // aggregate this array into [name, type, checkout_count]
-    // display top 5 games
+      this.gamesFilterService.getGames().subscribe((res) => {
+        this.games = res.data.games;
 
-    const gamesList = this.users?.map((user) => {
-      const filteredGames = games.filter((game) =>
-        game.checkouts.some((c) => c.ldap === user)
-        &&
-        game.status !== 'Removed'
-      );
-      return filteredGames;
+        this.users = this.game.checkouts.map((c: any) => c.ldap);
+        console.log(this.users);
+
+        // find users who borrowed this game [array of users]
+        // for each user, find games they've borrowed / played previously
+        // store them in an array
+        // aggregate this array into [name, type, checkout_count]
+        // display top 5 games
+
+        const gamesList = this.users?.map((user) => {
+          const filteredGames = this.games.filter(
+            (game: any) =>
+              game.checkouts.some((c: any) => c.ldap === user) &&
+              game.status === 'Available'
+          );
+          return filteredGames;
+        });
+        const unique = new Set();
+        gamesList?.flat().map((game) => {
+          unique.add(game);
+        });
+        const uniqueGames: any[] = [...unique];
+        console.log(uniqueGames);
+        const recListFull = uniqueGames.map((obj) => {
+          return {
+            id: obj._id,
+            name: obj.name,
+            imgThumb: obj.bggImgThumb,
+            count: obj.checkouts.length,
+          };
+        });
+        this.recList = recListFull
+          .sort((a, b) => b.count - a.count)
+          .slice(0, 5);
+        this.dataSource = this.recList;
+      });
     });
-    const unique = new Set();
-    gamesList?.flat().map((game) => {
-      unique.add(game);
-    });
-    const uniqueGames: any[] = [...unique];
-    const recListFull = uniqueGames.map((obj) => {
-      return {
-        id: obj.id,
-        name: obj.name,
-        imgThumb: obj.imgThumb,
-        count: obj.checkouts.length,
-      };
-    });
-    this.recList = recListFull.sort((a, b) => b.count - a.count).slice(0, 5);
-    this.dataSource = this.recList;
   }
 }

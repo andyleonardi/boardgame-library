@@ -11,7 +11,10 @@ import { AdminToServerService } from '../services/admin/admin-to-server.service'
 export class AdminAddGameComponent {
   // searchQuery: string = '';
   searchResult: [] = [];
-  gameToBeAdded!: Object;
+  gameToBeAdded: Object = {
+    name: null,
+    bggThingId: null,
+  };
   form: FormGroup = new FormGroup({
     searchQuery: new FormControl(''),
   });
@@ -23,6 +26,7 @@ export class AdminAddGameComponent {
   ) {}
 
   handleSearch() {
+    this.gameToBeAdded = {name: null, bggThingId: null};
     this.adminToServerService.storeQuery(this.form.value.searchQuery);
     this.adminToServerService.searchBGG().subscribe((res) => {
       this.searchResult = res.data.result;
@@ -32,5 +36,6 @@ export class AdminAddGameComponent {
   addGame(game: Object) {
     console.log('Added ', game);
     this.gameToBeAdded = game;
+    this.searchResult = [];
   }
 }

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { AdminToServerService } from '../services/admin/admin-to-server.service';
@@ -31,9 +32,35 @@ export class AdminAddGameFormComponent {
     { value: 'Small Games', viewValue: 'Small Games' },
   ];
 
-  constructor(private _snackBar: MatSnackBar) {}
+  constructor(
+    private _snackBar: MatSnackBar,
+    private adminToServerService: AdminToServerService,
+    private router: Router
+  ) {}
 
   handleAdd() {
-    console.log('button clicked');
+    const body = {
+      name: this.game.name,
+      bggthingId: this.game.bggThingId,
+      status: this.selectedStatus,
+      type: this.selectedType,
+    };
+    // console.log('button clicked, will submit the following game ', body);
+
+    this.adminToServerService
+      .addGame(body.name, body.bggthingId, body.status, body.type)
+      .subscribe(
+        (res) => {
+          this._snackBar.open(res.message, 'X', {
+            duration: 2000,
+          });
+          this.router.navigate(['/games/', res.data.game._id]);
+        },
+        (error) => {
+          this._snackBar.open(error.error.message, '', {
+            duration: 4000,
+          });
+        }
+      );
   }
 }

@@ -1,10 +1,5 @@
-import {
-  Component,
-  Input,
-  AfterViewInit,
-  ViewChild,
-  OnInit,
-} from '@angular/core';
+import { Component, Input, ViewChild, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 
@@ -24,8 +19,14 @@ interface Type {
 export class TableDisplayComponent implements OnInit {
   @Input() selectedType: string = '';
 
-  dataSource: MatTableDataSource<any> = new MatTableDataSource();
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  panelOpenState = true;
+  selectedPlayerCount: number = 4;
+  minPlayer: number = 1;
+  maxPlayer: number = 20;
+  selectedPlayTime: number = 60;
+  minTime: number = 15;
+  maxTime: number = 300;
+  // selectedType: string = '';
   types: Type[] = [
     { value: 'Two Player', viewValue: '2-Player' },
     { value: 'Light', viewValue: 'Light' },
@@ -38,33 +39,48 @@ export class TableDisplayComponent implements OnInit {
     { value: 'Small Games', viewValue: 'Small Games' },
   ];
 
-  displayedColumns: string[] = ['thumbnail', 'game'];
+  formInputs = this.formBuilder.group({
+    playerCount: this.selectedPlayerCount,
+    playTime: this.selectedPlayTime,
+    type: this.selectedType,
+  });
 
-  constructor(private gamesFilterService: GamesFilterService) {}
+  dataSource: MatTableDataSource<any> = new MatTableDataSource();
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  
+  displayedColumns: string[] = ['thumbnail', 'game', 'status'];
+
+  constructor(
+    private gamesFilterService: GamesFilterService,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit() {
     // this.games.filter = this.selectedType;
     this.gamesFilterService.getGames().subscribe((res) => {
-      this.dataSource = new MatTableDataSource(res.data.games);
+      const nonRemovedGames = res.data.games.filter(
+        (game: any) => game.status !== 'Removed'
+      );
+      this.dataSource = new MatTableDataSource(nonRemovedGames);
+      this.dataSource.filter = this.selectedType;
       this.dataSource.paginator = this.paginator;
       // console.log('response', res.data.games);
       // console.log('data', this.dataSource);
     });
-    
   }
-  
-  // games = new MatTableDataSource(
-  //   this.data
-  //   // this.data.filter((game: any) => game.status !== 'Removed')
-  // );
 
-  // ngAfterViewInit(): void {
-  //   this.dataSource.paginator = this.paginator;
-  // }
+  applyPlayerFilter(event: any) {
+    this.dataSource.filterPredicate = (data: any, filter: string) => !filter || (Number(data.minPlayer) >= Number(filter) && Number(data.maxPlayer) <= Number(filter));
+    this.dataSource.filter = this.formInputs.value.playerCount!.toString();
+  }
+
+  applyPlayTimeFilter(event: any) {
+    this.dataSource.filterPredicate = (data: any, filter: string) => !filter || (Number(data.minPlaytime) <= Number(filter) && Number(data.maxPlaytime) <= Number(filter));
+    this.dataSource.filter = this.formInputs.value.playTime!.toString();
+  }
 
   applyTypeFilter(event: any) {
-    this.dataSource.filter = this.selectedType;
+    // console.log(this.formInputs.value.type);
+    this.dataSource.filter = this.formInputs.value.type!;
   }
 }

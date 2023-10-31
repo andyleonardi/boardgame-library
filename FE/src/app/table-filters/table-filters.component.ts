@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-
-import { games } from 'src/games';
+import { FormBuilder } from '@angular/forms';
 
 interface Type {
   value: string;
@@ -10,11 +9,18 @@ interface Type {
 @Component({
   selector: 'app-table-filters',
   templateUrl: './table-filters.component.html',
-  styleUrls: ['./table-filters.component.css']
+  styleUrls: ['./table-filters.component.css'],
 })
 export class TableFiltersComponent {
-  panelOpenState = false;
+  panelOpenState = true;
+  selectedPlayerCount: number = 4;
+  minPlayer: number = 1;
+  maxPlayer: number = 20;
+  selectedPlayTime: number = 60;
+  minTime: number = 15;
+  maxTime: number = 300;
   selectedType: string = '';
+  
 
   types: Type[] = [
     { value: 'Two Player', viewValue: '2-Player' },
@@ -27,6 +33,16 @@ export class TableFiltersComponent {
     { value: 'Party', viewValue: 'Party' },
     { value: 'Small Games', viewValue: 'Small Games' },
   ];
+
+  formInputs = this.formBuilder.group(
+    {
+      playerCount: this.selectedPlayerCount,
+      playTime: this.selectedPlayTime,
+      type: this.selectedType,
+    }
+  );
+
+  constructor(private formBuilder: FormBuilder) {}
 
   applyTypeFilter(event: any) {
     // this.games.filter = this.selectedType;
