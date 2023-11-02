@@ -1,4 +1,4 @@
-const BACKEND_URL: string = ''; // http://localhost:8080
+const BACKEND_URL: string = 'http://localhost:8080'; // 
 
 export const userEndpoints = {
   login: (): string => `${BACKEND_URL}/sggamescafe/api/users/login`,

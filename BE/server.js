@@ -36,12 +36,13 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(express.static(path.join(__dirname, 'public')));  // this was commented out for Heroku
 // FOR HEROKU
-// app.use(express.static(path.join(__dirname, 'public')));  // this was commented out for Heroku
-app.use(express.static('public'));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/index.html'));
-})
+// app.use(express.static('public'));
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'public/index.html'));
+// })
 
 
 

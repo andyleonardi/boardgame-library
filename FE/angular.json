@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "../BE/public",
+            "outputPath": "dist/boardgame-library",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
