@@ -30,6 +30,8 @@
 <b>Things still to do:</b>
 <p>
 <ul>
-  <li></li>
+  <li>A more comprehensive stats dashboard</li>
+  <li>Combining multiple filters currently not working</li>
+  <li>Other QoL updates</li>
 </ul>
 </p>
